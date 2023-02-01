@@ -56,18 +56,24 @@
         <script>
           var is_abnner_c_show = sessionStorage.getItem('alreadyShow');
           if (is_abnner_c_show != 'alredy shown') {
-          document.querySelector("#enter-banner").style.display = "block";
-          document.querySelector("#enter-banner-warp").style.display = "block";
-          document.querySelector(".PageContainer").classList.add("hidden-home");
-          document.querySelector(".enter-button").addEventListener("click", function() {
-            sessionStorage.setItem('alreadyShow', 'alredy shown');
-          });
+            document.querySelector("#enter-banner").style.display = "block";
+            document.querySelector("#enter-banner-warp").style.display = "block";
+            document.querySelector(".PageContainer").classList.add("hidden-home");
+            document.querySelector(".enter-button").addEventListener("click", function() {
+              document.querySelector(".enter-home-fixed-bg").style.display = "none";
+              document.querySelector(".enter-home-section").style.display = "none";
+              sessionStorage.setItem('alreadyShow', 'alredy shown');
+              document.querySelector(".PageContainer").classList.remove("hidden-home");
+            });
           } else {
             var pageContainer = document.querySelector(".PageContainer");
             if (pageContainer) {
             pageContainer.classList.remove("hidden-home");
             }
           }
+          document.querySelector(".enter-button").addEventListener("click", function() {
+
+          });
         </script>
       {% endif %}
 {% comment %} Just For placement refrence 
