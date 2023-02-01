@@ -1,0 +1,41 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Prestige",
+    "theme_author": "Maestrooo",
+    "theme_version": "5.3.2",
+    "theme_documentation_url": "http:\/\/support.maestrooo.com\/",
+    "theme_support_url": "https:\/\/support.maestrooo.com\/article\/203-contact-us"
+  },
+  {
+    "name": "Enter Banner",
+    "settings": [
+      {
+        "type": "checkbox",
+        "label": "Show Enter Banner",
+        "id": "show_enter_banner",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "label": "Enter Banner Backgorund Image",
+        "id": "enter_banner_backgorund_image"
+      },
+      {
+        "type": "image_picker",
+        "label": "Enter Banner Mobile Backgorund Image",
+        "id": "enter_banner_mobile_backgorund_image"
+      },
+      {
+        "type": "url",
+        "label": "Enter Banner Video",
+        "id": "enter_banner_video"
+      },
+      {
+        "type": "url",
+        "label": "Enter Banner Video Mobile",
+        "id": "enter_banner_video_mobile"
+      }
+    ]
+  }
+]
