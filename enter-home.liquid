@@ -1,0 +1,119 @@
+{% if section.settings.show_enter_banner %}
+
+<div id="enter-banner" class="enterhometest">
+  {% if section.settings.rotating_logo != blank %}
+    <div class="testrow2">
+      <div class="testcolumn2">
+        <a class="logo-button">
+          <img loading="lazy" src="{{ section.settings.rotating_logo | image_url: width: 300 }}" class="logo-image">
+        </a>
+      </div>
+    </div>
+  {% endif %}
+  {% if section.settings.enter_text != blank %}
+    <div class="testrow">
+      <div class="testcolumn">
+        <button class="enter-button">
+          <p class="enter-text" style="color: {{ section.settings.enter_text_color }};">{{ section.settings.enter_text }}</p>
+        </button>
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<style data-shopify="">
+  .enterhometest {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    display: flex;
+    z-index: 99;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.testrow2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+    .testrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo-button {  
+  display:block;
+  cursor:default!important;
+}    
+  
+.logo-button img {
+  width: 360px;
+  height:auto;
+}
+
+.enter-button {
+  text-decoration:none;
+}
+    
+.enter-text {
+  font-size: 25px;
+  color: #ffffff;
+}
+
+.enter-text {
+   text-shadow:4px 4px black;
+}
+#enter-banner {
+  display: none;
+}
+</style>
+<script>
+  
+
+</script>
+{% endif %}
+{% schema %}
+{
+  "name": "Enter Home Banner",
+  "tag": "section",
+  "class": "enter-home-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "label": "Show Enter Banner",
+      "id": "show_enter_banner",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "label": "Rotating Logo",
+      "id": "rotating_logo"
+    },
+    {
+      "type": "text",
+      "label": "Enter Text",
+      "id": "enter_text"
+    },
+    {
+      "type": "color",
+      "label": "Enter Text Color",
+      "id": "enter_text_color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+
+  ],
+  "presets": [
+    {
+      "name": "Enter Home Banner"
+    }
+  ]
+}
+{% endschema %}
+    
