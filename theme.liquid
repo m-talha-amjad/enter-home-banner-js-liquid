@@ -1,0 +1,84 @@
+
+{%- if template == 'index' -%}
+      {% if settings.show_enter_banner %}
+        <style>
+            .enter-home-fixed-bg.mobile {
+                display: none;
+            }
+            .enter-home-fixed-bg {
+                width: 100%;
+                height: 100vh;
+                z-index: 9;
+                position: fixed;
+                object-position: top;
+                object-fit: cover;
+                background-color: #ff5ac0;
+            }
+            #enter-banner-warp {
+              display: none;
+            }
+            @media (max-width:590px) {
+                .enter-home-fixed-bg.mobile {
+                    display: block;
+                }
+                .enter-home-fixed-bg.desktop {
+                    display: none;
+                }
+            }
+        </style>
+        {% if settings.enter_banner_backgorund_image or settings.enter_banner_mobile_backgorund_image != blank %}
+          <div id="enter-banner-warp" class="enter-bg-wrap">
+            <img class="enter-home-fixed-bg desktop" src="{{ settings.enter_banner_backgorund_image | image_url : width: 1600 }}">
+            {% if settings.enter_banner_mobile_backgorund_image != blank %}
+                <img class="enter-home-fixed-bg mobile" src="{{ settings.enter_banner_mobile_backgorund_image | image_url : width: 700 }}">
+            {% endif %}
+          </div>
+        {% else %}
+        
+          <div class="enter-home-fixed-bg mobile">
+              <video muted autoplay loop playsinline>
+                  <source src="{{ settings.enter_banner_video_mobile }}" type="video/mp4">
+              </video>
+          </div>
+          <div class="enter-home-fixed-bg desktop">
+              <video muted autoplay loop playsinline>
+                  <source src="{{ settings.enter_banner_video }}" type="video/mp4">
+              </video>
+          </div>
+        {% endif %}
+      {% endif %}
+      {% section 'enter-home' %}
+    {%- endif -%}
+{% comment %} wrapper with PageContainer class to add new class hidden home {% endcomment %}
+
+<div class="PageContainer">
+      {% if settings.show_enter_banner %}
+        <script>
+          var is_abnner_c_show = sessionStorage.getItem('alreadyShow');
+          if (is_abnner_c_show != 'alredy shown') {
+          document.querySelector("#enter-banner").style.display = "block";
+          document.querySelector("#enter-banner-warp").style.display = "block";
+          document.querySelector(".PageContainer").classList.add("hidden-home");
+          document.querySelector(".enter-button").addEventListener("click", function() {
+            sessionStorage.setItem('alreadyShow', 'alredy shown');
+          });
+          } else {
+            var pageContainer = document.querySelector(".PageContainer");
+            if (pageContainer) {
+            pageContainer.classList.remove("hidden-home");
+            }
+          }
+        </script>
+      {% endif %}
+{% comment %} Just For placement refrence 
+      
+      {% section 'announcement' %}
+      {% section 'header' %}
+
+      <main id="main" role="main">
+        {{ content_for_layout }}
+      </main>
+
+      {% section 'footer' %}
+      {% endcomment %}
+    </div>
