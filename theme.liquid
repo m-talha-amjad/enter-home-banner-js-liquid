@@ -21,17 +21,18 @@
                 .enter-home-fixed-bg.mobile {
                     display: block;
                 }
-                .enter-home-fixed-bg.desktop {
-                    display: none;
-                }
+                .enter-home-fixed-bg.mobile+img.enter-home-fixed-bg.desktop {
+                  display: none;
+              }
             }
         </style>
         {% if settings.enter_banner_backgorund_image or settings.enter_banner_mobile_backgorund_image != blank %}
           <div id="enter-banner-warp" class="enter-bg-wrap">
-            <img class="enter-home-fixed-bg desktop" src="{{ settings.enter_banner_backgorund_image | image_url : width: 1600 }}">
             {% if settings.enter_banner_mobile_backgorund_image != blank %}
                 <img class="enter-home-fixed-bg mobile" src="{{ settings.enter_banner_mobile_backgorund_image | image_url : width: 700 }}">
             {% endif %}
+            <img class="enter-home-fixed-bg desktop" src="{{ settings.enter_banner_backgorund_image | image_url : width: 1600 }}">
+            
           </div>
         {% else %}
         
