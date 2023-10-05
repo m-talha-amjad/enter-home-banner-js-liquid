@@ -1,0 +1,95 @@
+{% comment %}
+  cero-made-in-the-world.myshopify.com
+  Split 4.2
+{% endcomment %}
+
+{% comment %}
+settings_schema.json
+{% endcomment %}
+
+  {
+    "name": "Enter Banner",
+    "settings": [
+      {
+        "type": "checkbox",
+        "label": "Show Enter Banner",
+        "id": "show_enter_banner",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "label": "Enter Banner Backgorund Image",
+        "id": "enter_banner_backgorund_image"
+      },
+      {
+        "type": "image_picker",
+        "label": "Enter Banner Mobile Backgorund Image",
+        "id": "enter_banner_mobile_backgorund_image"
+      }
+    ]
+  },
+
+{% comment %}
+theme.liquid
+{% endcomment %}
+
+<body class="no-touchevents {% if settings.show_enter_banner %}overflow-hidden{% endif %}">
+{% if settings.show_enter_banner %}
+    <style>
+        .overflow-hidden {
+          overflow: hidden;
+        }
+        .enter-bg-wrap {
+            opacity: 1;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 99999;
+            transition: 0.5s ease-in-out;
+        }
+        .fade-banner {
+          opacity: 0;
+          transition: 0.5s ease-in-out;
+        }
+        .hide-banner {
+            display: none;
+        }
+        .enter-home-fixed-bg {
+            width: 100%;
+            height: 100vh;
+            z-index: 9;
+            position: fixed;
+            object-position: top;
+            object-fit: cover;
+            background-color: #fff;
+        }
+        @media (max-width:590px) {
+            .enter-home-fixed-bg.mobile+img.enter-home-fixed-bg.desktop {
+              display: none;
+          }
+        }
+    </style>
+    {% if settings.enter_banner_backgorund_image or settings.enter_banner_mobile_backgorund_image != blank %}
+      <div id="enter-banner-warp" class="enter-bg-wrap">
+        {% if settings.enter_banner_mobile_backgorund_image != blank %}
+            <img class="enter-home-fixed-bg mobile" loading="eager" src="{{ settings.enter_banner_mobile_backgorund_image | image_url : width: 700 }}" width="{{ settings.enter_banner_mobile_backgorund_image.width }}" height="{{ settings.enter_banner_mobile_backgorund_image.height }}">
+        {% endif %}
+        <img class="enter-home-fixed-bg desktop" loading="eager" src="{{ settings.enter_banner_backgorund_image | image_url : width: 1600 }}" width="{{ settings.enter_banner_mobile_backgorund_image.width }}" height="{{ settings.enter_banner_mobile_backgorund_image.height }}">
+        
+      </div>
+    {% endif %}
+    <script>
+      setTimeout(() => {
+       let banner_wrap = document.querySelector("#enter-banner-warp");
+       let body = document.querySelector("body");
+       banner_wrap.classList.add("fade-banner");
+       body.classList.remove("overflow-hidden");
+       setTimeout(() => {
+        banner_wrap.classList.add("hide-banner");
+        }, 2000);
+      }, 1500);
+    </script>
+  {% endif %}
+
+</body>
