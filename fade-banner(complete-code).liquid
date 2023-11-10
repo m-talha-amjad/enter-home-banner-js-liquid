@@ -33,7 +33,7 @@ settings_schema.json
 theme.liquid
 {% endcomment %}
 
-<body class="no-touchevents {% if settings.show_enter_banner %}overflow-hidden{% endif %}">
+
 {% if settings.show_enter_banner %}
     <style>
         .overflow-hidden {
@@ -70,6 +70,10 @@ theme.liquid
           }
         }
     </style>
+{{ content_for_header }}
+
+<body class="no-touchevents {% if settings.show_enter_banner %}overflow-hidden{% endif %}">
+
     {% if settings.enter_banner_backgorund_image or settings.enter_banner_mobile_backgorund_image != blank %}
       <div id="enter-banner-warp" class="enter-bg-wrap">
         {% if settings.enter_banner_mobile_backgorund_image != blank %}
